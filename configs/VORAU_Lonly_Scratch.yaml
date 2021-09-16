@@ -1,0 +1,27 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "../../../VORAU/Lonly_Scratch/output/"
+MODEL:
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 1
+  RETINANET:
+    NUM_CLASSES: 1
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
+DATASETS:
+  DLA:
+    REGISTER_NEW_DATASET: True
+    TRAIN:
+      NAME: "VORAU_train"
+      JSON: "../../../../../datasets/VORAU/train_all/annotations/train_L_annotations.json"
+      PATH: "../../../../../datasets/VORAU/train_all/"
+    TEST:
+      NAME: "VORAU_test"
+      JSON: "../../../../../datasets/VORAU/test/annotations/test_L_annotations.json"
+      PATH: "../../../../../datasets/VORAU/test/"
+  TEST:
+  - VORAU_test
+  TRAIN:
+  - VORAU_train

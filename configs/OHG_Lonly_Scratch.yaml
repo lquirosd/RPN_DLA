@@ -1,0 +1,29 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "../../../OHG/Lonly_scratch/output/"
+MODEL:
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 1
+  RETINANET:
+    NUM_CLASSES: 1
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
+DATASETS:
+  DLA:
+    REGISTER_NEW_DATASET: True
+    TRAIN:
+      NAME: "OHG_train"
+      JSON: "../../../../../datasets/OHG/train_all/annotations/train_L_annotations.json"
+      PATH: "../../../../../datasets/OHG/train_all/"
+    TEST:
+      NAME: "OHG_test"
+      JSON: "../../../../../datasets/OHG/test/annotations/test_L_annotations.json"
+      PATH: "../../../../../datasets/OHG/test/"
+  TEST:
+  - OHG_test
+  TRAIN:
+  - OHG_train
+SOLVER:
+  BASE_LR: 0.01

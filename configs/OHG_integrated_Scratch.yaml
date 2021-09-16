@@ -1,0 +1,29 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "../../../OHG/integrated_scratch/output/"
+MODEL:
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 7
+  RETINANET:
+    NUM_CLASSES: 7
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 7
+DATASETS:
+  DLA:
+    REGISTER_NEW_DATASET: True
+    TRAIN:
+      NAME: "OHG_train"
+      JSON: "../../../../../datasets/OHG/train_all/annotations/train_annotations.json"
+      PATH: "../../../../../datasets/OHG/train_all/"
+    TEST:
+      NAME: "OHG_test"
+      JSON: "../../../../../datasets/OHG/test/annotations/val_annotations.json"
+      PATH: "../../../../../datasets/OHG/test/"
+  TEST:
+  - OHG_test
+  TRAIN:
+  - OHG_train
+SOLVER:
+  BASE_LR: 0.01

@@ -55,7 +55,7 @@ python utils/page2coco.py --page_dir <> --include <> --classes <> --output <>
 
 3. Run the tool
 ```bash
-python train_net.py --num-gpus <> --config-file <>
+python train_net.py --num-gpus <1> --config-file <configs/> SOLVER.IMS_PER_BATCH <4> SOLVER.BASE_LR <0.01>
 ```
 An example config file can be found in [configs](configs) folder
 

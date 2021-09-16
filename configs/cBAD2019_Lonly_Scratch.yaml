@@ -1,0 +1,27 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "../../../cBAD2019/Lonly_Scratch/output/"
+MODEL:
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 1
+  RETINANET:
+    NUM_CLASSES: 1
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
+DATASETS:
+  DLA:
+    REGISTER_NEW_DATASET: True
+    TRAIN:
+      NAME: "cBAD2019_train"
+      JSON: "../../../../../datasets/cBAD2019/train/annotations/train_Lonly_annotations.json"
+      PATH: "../../../../../datasets/cBAD2019/train/"
+    TEST:
+      NAME: "cBAD2019_test"
+      JSON: "../../../../../datasets/cBAD2019/test/annotations/test_Lonly_annotations.json"
+      PATH: "../../../../../datasets/cBAD2019/test/"
+  TEST:
+  - cBAD2019_test
+  TRAIN:
+  - cBAD2019_train

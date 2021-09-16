@@ -1,0 +1,27 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "../../../Bozen/integrated_Scratch/output/"
+MODEL:
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 5
+  RETINANET:
+    NUM_CLASSES: 5
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 5
+DATASETS:
+  DLA:
+    REGISTER_NEW_DATASET: True
+    TRAIN:
+      NAME: "Bozen_train"
+      JSON: "../../../../../datasets/Bozen/train_all/annotations/train_annotations.json"
+      PATH: "../../../../../datasets/Bozen/train_all/"
+    TEST:
+      NAME: "Bozen_test"
+      JSON: "../../../../../datasets/Bozen/test/annotations/test_annotations.json"
+      PATH: "../../../../../datasets/Bozen/test/"
+  TEST:
+  - Bozen_test
+  TRAIN:
+  - Bozen_train
